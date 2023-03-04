@@ -1,11 +1,14 @@
-<h5>Cadastro de Produtos</h5>
-<p>Preencha os campos para incluir um produto.</p>
+<h5>Edição de Produtos</h5>
+<p>Preencha os campos para alterar os dados um produto.</p>
 <hr />
 
-<form [formGroup] ="formCadastro" (ngSubmit)="onSubmit()">
-<div *ngIf="mensagem" class="mb-3 alert alert-primary" >
-  <strong>{{mensagem}}</strong>
-</div>
+<form [formGroup] ="formEdicao" (ngSubmit)="onSubmit()">
+    <div *ngIf="mensagem" class="mb-3 alert alert-primary" >
+      <strong>{{mensagem}}</strong>
+    </div>
+    
+    <!--campo oculto-->
+    <input type="hidden" formControlName="idProduto" />
 
     <div class="row mb-3">
         <div class="col-md-6">
@@ -42,7 +45,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-md-12">
-            <input type="submit" [disabled]="!formCadastro.valid" value="Realizar Cadastro" class="btn btn-success" />
+            <input type="submit" [disabled]="!formEdicao.valid" value="Salvar Alterações" class="btn btn-primary" />
         </div>
     </div>
 </form>

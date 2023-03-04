@@ -28,4 +28,19 @@ ngOnInit(): void {
   )
 }
 
+//funcao para fazer a exclusao do produto na api
+excluir(idProduto: number): void {
+  if(window.confirm('Deseja realmente excluir o produto selecionado?')){
+    this.httpClient.delete('http://localhost:8080/api/produtos' + idProduto, { responseType : 'text'}).subscribe(
+      (data) => {
+        alert(data); // exibir mensagen em uma janela pop up
+        this.ngOnInit(); //recarrgar a consulta de produtos
+         },
+         (e) => {
+          console.log(e);
+         } 
+    )
+  }
+}
+
 }
