@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'; 
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AuthHelper } from '../_helpers/auth_helper';
 
 @Component({
   selector: 'app-cadastrar-produtos',
@@ -11,10 +12,13 @@ import { environment } from 'src/environments/environment';
 export class CadastrarProdutosComponent {
 
   //atributo
-  mensagem: string = ''
+  mensagem: string = '';
+  exibirPagina: boolean = false;
+
 
   constructor(   
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private authHelper: AuthHelper
   ) {  
 
   } 
@@ -35,6 +39,15 @@ export class CadastrarProdutosComponent {
   }
 
   ngOnInit(): void {
+
+    if(this.authHelper.isAuthenticated()){
+      this.exibirPagina = true;
+     
+     
+   } else{
+     //redirecionamento
+    window.location.href = "/";
+    }
 
   }
 
